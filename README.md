@@ -12,9 +12,9 @@ There are 5 parts easy to customize:
 5. functions_dev.js: controls fine details of the "flower heart", and the start of the timer
 
 # Credits
-Some images and the default video is borrowed from [Tiffany.co](tiffany.co), 
+Some images and the default video is borrowed from [Tiffany.co](http://tiffany.com), 
 so please don't use for business purposes without their permission.
 
-Inspired by [Hacker Zhou](hackerzhou.me) though code is modified a lot.
+Inspired by [Hacker Zhou](http://hackerzhou.me) though code is modified a lot.
 
 "Flow heart" effect credits to the FlowerPower project.
