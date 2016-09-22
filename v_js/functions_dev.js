@@ -5,7 +5,6 @@ var clientHeight = $(window).height();
 var timerA;
 
 $(function () {
-
 	$loveHeart = $("#loveHeart");
 	var offsetX = $loveHeart.width() / 2;
 	var offsetY = $loveHeart.height() / 2 - 55;
@@ -35,19 +34,27 @@ $(window).resize(function() {
     }
 });
 
-function getHeartPoint(angle) {
+function getHeartPoint(angle, scale) {
 	var t = angle / Math.PI;
 	var x = 19.5 * (16 * Math.pow(Math.sin(t), 3));
-	var y = - 20 * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+	var y = - 20  * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+	x *= scale;
+	y *= scale;
 	return new Array(offsetX + x, offsetY + y);
 }
 
-function startHeartAnimation() {
-	var interval = 70;
+function startHeartAnimation(scale) {
+	if (scale < 0.9)
+	{
+		return;
+	}
+
+	var interval = 80;
 	var angle = 10;
 	var heart = new Array();
+
 	var animationTimer = setInterval(function () {
-		var bloom = getHeartPoint(angle);
+		var bloom = getHeartPoint(angle, scale);
 		var draw = true;
 		for (var i = 0; i < heart.length; i++) {
 			var p = heart[i];
@@ -60,15 +67,15 @@ function startHeartAnimation() {
 		if (draw) {
 			heart.push(bloom);
 			garden.createRandomBloom(bloom[0], bloom[1]);
-		}
+		}		
 		if (angle >= 30) {
 			clearInterval(animationTimer);
 			showMessages();
+			startHeartAnimation(scale - 0.04);
 		} else {
 			angle += 0.2;
 		}
 	}, interval);
-	clearInterval(timerA);
 }
 
 (function($) {
@@ -97,9 +104,8 @@ function startHeartAnimation() {
 function timeElapse(date){
 	var current = Date();
 	current.toLocaleString();
-	var seconds = (Date.parse(current) - Date.parse(date) / 1000;
+	var seconds = (Date.parse(current) - Date.parse("June 8,2012 23:19:20")) / 1000
 	var days = Math.floor(seconds / (3600 * 24));
-
 	seconds = seconds % (3600 * 24);
 	var hours = Math.floor(seconds / 3600);
 	if (hours < 10) {
@@ -114,7 +120,6 @@ function timeElapse(date){
 	if (seconds < 10) {
 		seconds = "0" + seconds;
 	}
-
 	var result = "<span class=\"digit\">" + days + "</span> days <span class=\"digit\">" + hours + "</span> hours <span class=\"digit\">" + minutes + "</span> minutes <span class=\"digit\">" + seconds + "</span> seconds"; 
 	$("#elapseClock").html(result);
 }
@@ -123,6 +128,9 @@ function showMessages() {
 	adjustWordsPosition();
 	$('#messages').fadeIn(5000, function() {
 		showLoveU();
+		setTimeout(function () {
+				showDog();
+			}, 5000);
 	});
 }
 
@@ -140,6 +148,26 @@ function showLoveU() {
 	$('#loveu').fadeIn(3000);
 }
 
-function startAnamationTimer() {
-	timerA = setInterval(startHeartAnimation,51500);
+function showDog() {
+	$('#dog').fadeIn();
+}
+
+function dogMouseOver(){
+	$('#dogImg').fadeOut(250);
+	$('#dogImg').fadeIn(250);
+}
+
+function showVideo() {
+	$('#videoDiv').css("visibility", "visible");
+	var tVideo=document.getElementById("tiffanyVideo");
+	tVideo.play();
+}
+
+function hideVideo() {
+	$('#videoDiv').css("z-index", "-1");
+	$('#videoDiv').css("width", clientWidth);
+	$('#videoDiv').css("heigh", clientHeight);
+	$('#videoDiv').css("position", "absolute");
+	$('#videoDiv').css("top", "-200px");
+	$('#videoDiv').css("left", "0");
 }

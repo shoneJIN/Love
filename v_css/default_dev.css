@@ -1,9 +1,23 @@
 body {
 	margin: 0;
 	padding: 0;
-	background: #FFDDEE;
+	background: #81D8CF;/* #ecf9f8; #FFDDEE;*/
 	font-size: 12px;
 	overflow: auto;
+}
+
+#videoDiv{
+	z-index: 1;
+	visibility: hidden;
+	width: 70%;
+	height: 70%;
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	
+	margin: auto;
 }
 
 #mainDiv{
@@ -58,9 +72,16 @@ body {
 
 #loveu .signature{
 	margin-top: 10px;
-	font-size: 27px;
+	margin-left: 10px;
+	font-size: 35px;
 	font-family: "Edwardian Script ITC","Comic Sans MS", "Arial";
+	color: red;
 	font-style: italic;
+}
+
+#dog{
+	margin-left: 400px;
+	display: none;
 }
 
 #clickSound{
@@ -71,18 +92,33 @@ body {
 	float: left;
 	width: 440px;
 	height: 400px;
-	color: #333;
-	font-family: "Consolas", "Monaco", "Bitstream Vera Sans Mono", "Courier New", "sans-serif";
-	font-size: 12px;
+	
+	font-size: 11px; 
+	line-height: 11px;
+	letter-spacing: 0; 
+	font-family: 'Sterling SSm 3r', 'Sterling SSm A', 'Sterling SSm B', serif; 
+	font-weight: 300; 
+	font-style: normal; 
+	text-transform: uppercase;
 }
 
 #code .string{
 	color: #2a36ff;
 }
 
+/*
+Sterling SSm 3r', 'Sterling SSm A', 'Sterling SSm B
+Sterling SSm 4i'
+*/
 #code .keyword{
 	color: #7f0055;
-	font-weight:bold;
+	font-size: 20px; 
+	line-height: 30px; 
+	letter-spacing: 0; 
+	font-family: 'Sterling SSm 3r', 'Sterling Display 3r', 'Sterling Display A', 'Sterling Display B', serif; 
+	font-weight: 300; 
+	font-style: italic; 
+	text-transform: uppercase;
 }
 
 #code .placeholder{
@@ -106,7 +142,7 @@ body {
 	margin-top: 10px;
 	text-align: center;
 	width:100%;
-	color:#666;
+	color:#FFF;
 	display: none;
 }
 
@@ -121,5 +157,5 @@ body {
 
 #copyright a{
 	color:#666;
-	font-family: "Comic Sans MS", "Arial";
+	font-family: "terling SSm 3r", "Arial";
 }
